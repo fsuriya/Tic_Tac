@@ -69,7 +69,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-### Package install
-# ติดตั้ง package firebase
-npm install @firebase/app --save
-npm install @firebase/firestore --save
+# Package install
+### ติดตั้ง package firebase
+`npm install @firebase/app --save`\
+`npm install @firebase/firestore --save`
