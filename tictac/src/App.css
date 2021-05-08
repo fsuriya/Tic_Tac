@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #212529;
 }
 
 .App-logo {
@@ -14,18 +15,19 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #ffffff;
+  min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  box-shadow: 1% 1%;
 }
 
 .App-link {
-  color: #61dafb;
+  color: #000000;
 }
 
 @keyframes App-logo-spin {
@@ -35,4 +37,64 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.BG {
+  background-image: url("./istockphoto-1140391355-612x612.jpg");
+  min-height: 100%;
+}
+
+.message {
+  background: white;
+  border: 0.25em solid #dde;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  color: #668;
+  margin: 0 auto 2em auto;
+  padding: 1em 0;
+  width: 80%;
+}
+
+.btns {
+  -moz-user-select: none;
+  -ms-touch-action: manipulation;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  background-color: #2c2e30;
+  background-image: none;
+  border-color: #131414;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  margin-bottom: 0;
+  padding: 6px 12px;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.btns:hover {
+  color: #fff;
+  background-color: #383b3d;
+  border-color: #2c2e30;
+}
+
+.github {
+  margin-top: 2em;
+}
+
+.github iframe {
+  border: 0;
+}
+
+.github iframe:first-child {
+  margin-right: 1em;
 }

@@ -1,46 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-// import firebase
-import firebaseApp from './components/firebase';
-const db = firebaseApp.firestore();
-const historyCollection = db.collection('History');
-// End import firebase
+// import page
+import Play from './components/play';
+import History from './components/history';
+// End import page
+
+// import component
+import Navbar from './components/Navbar/navbar'
+// End import component
 
 const App = () => {
-  
-  const [His, setHis] = useState();
-
-  useEffect(() => {
-    function getHistory(){
-      historyCollection.get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            console.log(typeof(doc.data().playerX));
-            // console.log(doc);
-            setHis(`${doc.id} => ${doc.data().playerX[2]}`);
-        });
-    });
-    }
-    getHistory();
-  }, []);
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          {His}
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <Navbar />
       </header>
+      
+      <body>
+        <Router>
+          <Switch>
+            <Route exact path='/' component={Play} />
+            <Route exact path='/history' component={History} />
+          </Switch>
+        </Router>
+      </body>
     </div>
   );
 }

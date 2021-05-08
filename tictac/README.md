@@ -73,3 +73,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### ติดตั้ง package firebase
 `npm install @firebase/app --save`\
 `npm install @firebase/firestore --save`
+
+### ติดตั้ง react-router-dom สำหรับการ Route page
+`npm i react-router-dom -- save`
+
+### ติดตั้ง CSS Bootstrap
+`npm i react-bootstrap bootstrap --save`
