@@ -79,3 +79,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### ติดตั้ง CSS Bootstrap
 `npm i react-bootstrap bootstrap --save`
+
+### ติดตั้ง React Responsive
+`npm install react-responsive --save`

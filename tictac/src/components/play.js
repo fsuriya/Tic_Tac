@@ -1,22 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Row, Col } from "react-bootstrap";
 
 const Play = () => {
   return (
-    <div>
+    <div className="Center">
       <div>
-        
-          <Form.Group as={Row} controlId="formDim">
-            <Form.Label column sm="2">
-                Dimension
-            </Form.Label>
-            <Col sm="20">
-              <Form.Control type="number" placeholder="Enter Dimension" />
-            </Col>
-          </Form.Group>
-        
+        <Form.Group as={Row} controlId="formDim">
+          <Form.Label column sm="2">
+            Dimension
+          </Form.Label>
+          <Col sm="20">
+            <Form.Control type="number" placeholder="Enter Dimension" />
+          </Col>
+        </Form.Group>
       </div>
       <div className="message">test</div>
       <div className="btns">Reset</div>

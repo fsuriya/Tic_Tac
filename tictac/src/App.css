@@ -1,6 +1,10 @@
-.App {
+.Nav {
   text-align: center;
   background-color: #212529;
+}
+
+.Center {
+  text-align: center;
 }
 
 .App-logo {

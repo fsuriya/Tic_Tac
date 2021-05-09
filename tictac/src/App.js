@@ -14,8 +14,8 @@ import Navbar from './components/Navbar/navbar'
 const App = () => {
 
   return (
-    <div className="App">
-      <header>
+    <div>
+      <header className="Nav">
         <Navbar />
       </header>
       

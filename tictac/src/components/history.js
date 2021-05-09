@@ -1,4 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
+import { Container, Row, Col, Card } from "react-bootstrap";
+
+// import component
+import CardHistory from './cardHistory';
+// End import component
 
 // import firebase
 import firebaseApp from "./firebase";
@@ -7,28 +13,32 @@ const historyCollection = db.collection("History");
 // End import firebase
 
 const History = () => {
-  const [His, setHis] = useState([{
-    id: 0,
-    Dim: 0,
-    PlayerX: 0,
-    PlayerO: 0,
-    Time: 0,
-    Win: 0,
-  }]);
+  // Define responsive
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-device-width: 1224px)",
+  });
+  const isTabletOrMobileDevice = useMediaQuery({
+    query: "(max-device-width: 1224px)",
+  });
+  // End Define responsive
+
+  const [His, setHis] = useState();
 
   useEffect(() => {
     function getHistory() {
-      historyCollection.get().then((querySnapshot) => {
-        var temp = [];
+      historyCollection.onSnapshot((querySnapshot) => {
+        let temp = [];
         querySnapshot.forEach((doc) => {
-          console.log(`${doc.id} => ${doc.data().Dim}`);
+          let d = doc.data().time.split(" ");
+          // ["Sun", "May", "09", "2021", "14:54:21", "GMT+0700", "(Indochina", "Time)"]
+          // console.log(d);
           temp.push({
             id: doc.id,
-            Dim: doc.Dim,
-            PlayerX: doc.PlayerX,
-            PlayerO: doc.PlayerO,
-            Time: doc.time,
-            Win: doc.win,
+            dim: doc.data().dim,
+            playerO: doc.data().playerO,
+            playerX: doc.data().playerX,
+            time: d,
+            win: doc.data().win,
           });
         });
         setHis(temp);
@@ -39,8 +49,54 @@ const History = () => {
 
   return (
     <div>
-      <a>History</a>
-      <a>{His[0].Dim}</a>
+      {isDesktopOrLaptop && (
+        <>
+          <br />
+          <h2 className="Center">History</h2>
+          <br />
+          <Container>
+            <Row>
+              <Col></Col>
+              <Col xs={10}>
+                {His ? (
+                  His.map((history, index) => 
+                    <CardHistory info={history} key={index} />
+                  )
+                ) : (
+                  <Card>
+                    <Card.Body>Game history not found!!!</Card.Body>
+                  </Card>
+                )}
+              </Col>
+              <Col></Col>
+            </Row>
+          </Container>
+        </>
+      )}
+      {isTabletOrMobileDevice && (
+        <>
+          <br />
+          <h2 className="Center">History</h2>
+          <br />
+          <Container>
+            <Row>
+              <Col></Col>
+              <Col xs={12}>
+              {His ? (
+                  His.map((history, index) => 
+                    <CardHistory info={history} key={index} />
+                  )
+                ) : (
+                  <Card>
+                    <Card.Body>Game history not found!!!</Card.Body>
+                  </Card>
+                )}
+              </Col>
+              <Col></Col>
+            </Row>
+          </Container>
+        </>
+      )}
     </div>
   );
 };
