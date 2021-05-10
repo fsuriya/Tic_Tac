@@ -8,6 +8,8 @@ const Play = () => {
   const [Dim, SetDim] = useState(3);
   // const [Turn, SetTurn] = useState(1);
   var Turn = 1;
+  var gameEnd = false;
+  var winner;
   const [Board, SetBoard] = useState();
   const [Boardrender, SetBoardrender] = useState();
 
@@ -31,22 +33,25 @@ const Play = () => {
   }
 
   function renderBoard() {
-    let temp = [];
+    
+    let temp2 = [];
     for (let i = 0; i < Dim; i++) {
-      // temp.push();
+      let temp = [];
       for (let j = 0; j < Dim; j++) {
         // reder button to board
         if (Board != null && Board[i * Dim + j] === 0) {
           temp.push(
             <button
               id={i * Dim + j}
-              style={{ width: 200, height: 200 }}
+              style={{ width: (330/Dim), height: (330/Dim) }}
               className="Board"
               onClick={(e) => {
                 clickButton(e);
               }}
             >
-              <div style={{ }} className="Text-Board">&nbsp;</div>
+              <div style={{}} className="Text-Board">
+                &nbsp;
+              </div>
             </button>
           );
         }
@@ -54,43 +59,132 @@ const Play = () => {
         else if (Board != null && Board[i * Dim + j] === 1) {
           temp.push(
             <button
-          id={i * Dim + j}
-          style={{ width: 200, height: 200 }}
-          className="Board-notclick"
-        >
-          <div className="Text-Board">X</div>
-        </button>
+              id={i * Dim + j}
+              style={{ width: (330/Dim), height: (330/Dim) }}
+              className="Board-notclick"
+            >
+              <div className="Text-Board" style={{ fontSize: (240/Dim)}}>X</div>
+            </button>
           );
         }
         // render card X to board
         else if (Board != null && Board[i * Dim + j] === 2) {
           temp.push(
             <button
-          id={i * Dim + j}
-          style={{ width: 200, height: 200 }}
-          className="Board-notclick"
-        >
-          <div className="Text-Board">O</div>
-        </button>
+              id={i * Dim + j}
+              style={{ width: (330/Dim), height: (330/Dim) }}
+              className="Board-notclick"
+            >
+              <div className="Text-Board" style={{ fontSize: (240/Dim)}}>O</div>
+            </button>
           );
         }
       }
+      temp2.push(<div>{temp}</div>)
     }
-    SetBoardrender(temp);
+    SetBoardrender(temp2);
+  }
+
+  function endRender(){
+    let temp2 = [];
+    for (let i = 0; i < Dim; i++) {
+      let temp = [];
+      for (let j = 0; j < Dim; j++) {
+        // reder button to board
+        if (Board != null && Board[i * Dim + j] === 0) {
+          temp.push(
+            <button
+              id={i * Dim + j}
+              style={{ width: (330/Dim), height: (330/Dim) }}
+              className="Board"
+            >
+              <div style={{}} className="Text-Board">
+                &nbsp;
+              </div>
+            </button>
+          );
+        }
+        // render card X to board
+        else if (Board != null && Board[i * Dim + j] === 1) {
+          temp.push(
+            <button
+              id={i * Dim + j}
+              style={{ width: (330/Dim), height: (330/Dim) }}
+              className="Board-notclick"
+            >
+              <div className="Text-Board" style={{ fontSize: (240/Dim)}}>X</div>
+            </button>
+          );
+        }
+        // render card X to board
+        else if (Board != null && Board[i * Dim + j] === 2) {
+          temp.push(
+            <button
+              id={i * Dim + j}
+              style={{ width: (330/Dim), height: (330/Dim) }}
+              className="Board-notclick"
+            >
+              <div className="Text-Board" style={{ fontSize: (240/Dim)}}>O</div>
+            </button>
+          );
+        }
+      }
+      temp2.push(<div>{temp}</div>)
+    }
+    SetBoardrender(temp2);
+  }
+
+  async function checkWinner(player) {
+    let isWin = false;
+    let x1 = true;
+    let x2 = true;
+    for (let i = 0; i < Dim; i++) {
+      let rowwin = true;
+      let colwin = true;
+      for (let j = 0; j < Dim; j++) {
+        rowwin &= (Board[i * Dim + j] === player);
+        colwin &= (Board[j * Dim + i] === player);
+        if(i===j){
+          x1 &= (Board[i * Dim + j] === player);
+        }
+        if(i + j + 1 === Dim){
+          x2 &= (Board[i * Dim + j] === player)
+        }
+      }
+      if((rowwin === 1) || (colwin === 1)){
+        isWin = true;
+      }
+    }
+    if((x1 === 1) || (x2 === 1)){
+      isWin = true;
+    }
+    return isWin;
   }
 
   async function changeTurn() {
     await renderBoard();
     // check winner
     console.log(Board);
+    if(await checkWinner(1)){
+      SetMessage(`Player X is win`);
+      gameEnd = true;
+      winner = 1;
+      endRender();
+    }
+    else if(await checkWinner(2)){
+      SetMessage(`Player O is win`);
+      gameEnd = true;
+      winner = 2;
+      endRender();
+    }
     // End check winner
 
     // change turn
-    if (Turn === 1) {
+    if ((Turn === 1) && !gameEnd) {
       // await SetTurn(2);
       Turn = 2;
       SetMessage(`Player O turn.`);
-    } else if (Turn === 2) {
+    } else if (Turn === 2 && !gameEnd) {
       // await SetTurn(1);
       Turn = 1;
       SetMessage(`Player X turn.`);
@@ -110,10 +204,9 @@ const Play = () => {
 
   function clickButton(e) {
     let temp = Board;
-    if(Turn === 1){
+    if (Turn === 1) {
       temp[parseInt(e.currentTarget.id)] = 1;
-    }
-    else if(Turn === 2){
+    } else if (Turn === 2) {
       temp[parseInt(e.currentTarget.id)] = 2;
     }
     changeTurn();
@@ -160,6 +253,7 @@ const Play = () => {
       <br />
       <div className="message">{Message}</div>
       {Boardrender}
+      <br/>
       <div className="btns" onClick={(e) => reset()}>
         Reset
       </div>
