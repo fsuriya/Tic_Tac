@@ -31,7 +31,7 @@ const History = () => {
         querySnapshot.forEach((doc) => {
           let d = doc.data().time.split(" ");
           // ["Sun", "May", "09", "2021", "14:54:21", "GMT+0700", "(Indochina", "Time)"]
-          // console.log(d);
+          // console.log(Date().toLocaleString());
           temp.push({
             id: doc.id,
             dim: doc.data().dim,
