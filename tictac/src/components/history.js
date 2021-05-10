@@ -35,8 +35,7 @@ const History = () => {
           temp.push({
             id: doc.id,
             dim: doc.data().dim,
-            playerO: doc.data().playerO,
-            playerX: doc.data().playerX,
+            board: doc.data().board,
             time: d,
             win: doc.data().win,
           });

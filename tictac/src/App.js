@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import page
 import Play from './components/play';
 import History from './components/history';
+import Detail from './components/detail';
 // End import page
 
 // import component
@@ -24,6 +25,7 @@ const App = () => {
           <Switch>
             <Route exact path='/' component={Play} />
             <Route exact path='/history' component={History} />
+            <Route exact path='/detail' component={Detail} />
           </Switch>
         </Router>
       </body>

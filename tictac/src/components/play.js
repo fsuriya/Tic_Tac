@@ -3,6 +3,12 @@ import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Row, Col, Container } from "react-bootstrap";
 
+// import firebase
+import firebaseApp from "./firebase";
+const db = firebaseApp.firestore();
+const historyCollection = db.collection("History");
+// End import firebase
+
 const Play = () => {
   const [Message, SetMessage] = useState("");
   const [Dim, SetDim] = useState(3);
@@ -33,7 +39,6 @@ const Play = () => {
   }
 
   function renderBoard() {
-    
     let temp2 = [];
     for (let i = 0; i < Dim; i++) {
       let temp = [];
@@ -43,7 +48,7 @@ const Play = () => {
           temp.push(
             <button
               id={i * Dim + j}
-              style={{ width: (330/Dim), height: (330/Dim) }}
+              style={{ width: 330 / Dim, height: 330 / Dim }}
               className="Board"
               onClick={(e) => {
                 clickButton(e);
@@ -60,10 +65,12 @@ const Play = () => {
           temp.push(
             <button
               id={i * Dim + j}
-              style={{ width: (330/Dim), height: (330/Dim) }}
+              style={{ width: 330 / Dim, height: 330 / Dim }}
               className="Board-notclick"
             >
-              <div className="Text-Board" style={{ fontSize: (240/Dim)}}>X</div>
+              <div className="Text-Board" style={{ fontSize: 240 / Dim }}>
+                X
+              </div>
             </button>
           );
         }
@@ -72,20 +79,22 @@ const Play = () => {
           temp.push(
             <button
               id={i * Dim + j}
-              style={{ width: (330/Dim), height: (330/Dim) }}
+              style={{ width: 330 / Dim, height: 330 / Dim }}
               className="Board-notclick"
             >
-              <div className="Text-Board" style={{ fontSize: (240/Dim)}}>O</div>
+              <div className="Text-Board" style={{ fontSize: 240 / Dim }}>
+                O
+              </div>
             </button>
           );
         }
       }
-      temp2.push(<div>{temp}</div>)
+      temp2.push(<div>{temp}</div>);
     }
     SetBoardrender(temp2);
   }
 
-  function endRender(){
+  function endRender() {
     let temp2 = [];
     for (let i = 0; i < Dim; i++) {
       let temp = [];
@@ -95,7 +104,7 @@ const Play = () => {
           temp.push(
             <button
               id={i * Dim + j}
-              style={{ width: (330/Dim), height: (330/Dim) }}
+              style={{ width: 330 / Dim, height: 330 / Dim }}
               className="Board"
             >
               <div style={{}} className="Text-Board">
@@ -109,10 +118,12 @@ const Play = () => {
           temp.push(
             <button
               id={i * Dim + j}
-              style={{ width: (330/Dim), height: (330/Dim) }}
+              style={{ width: 330 / Dim, height: 330 / Dim }}
               className="Board-notclick"
             >
-              <div className="Text-Board" style={{ fontSize: (240/Dim)}}>X</div>
+              <div className="Text-Board" style={{ fontSize: 240 / Dim }}>
+                X
+              </div>
             </button>
           );
         }
@@ -121,15 +132,17 @@ const Play = () => {
           temp.push(
             <button
               id={i * Dim + j}
-              style={{ width: (330/Dim), height: (330/Dim) }}
+              style={{ width: 330 / Dim, height: 330 / Dim }}
               className="Board-notclick"
             >
-              <div className="Text-Board" style={{ fontSize: (240/Dim)}}>O</div>
+              <div className="Text-Board" style={{ fontSize: 240 / Dim }}>
+                O
+              </div>
             </button>
           );
         }
       }
-      temp2.push(<div>{temp}</div>)
+      temp2.push(<div>{temp}</div>);
     }
     SetBoardrender(temp2);
   }
@@ -142,45 +155,84 @@ const Play = () => {
       let rowwin = true;
       let colwin = true;
       for (let j = 0; j < Dim; j++) {
-        rowwin &= (Board[i * Dim + j] === player);
-        colwin &= (Board[j * Dim + i] === player);
-        if(i===j){
-          x1 &= (Board[i * Dim + j] === player);
+        rowwin &= Board[i * Dim + j] === player;
+        colwin &= Board[j * Dim + i] === player;
+        if (i === j) {
+          x1 &= Board[i * Dim + j] === player;
         }
-        if(i + j + 1 === Dim){
-          x2 &= (Board[i * Dim + j] === player)
+        if (i + j + 1 === Dim) {
+          x2 &= Board[i * Dim + j] === player;
         }
       }
-      if((rowwin === 1) || (colwin === 1)){
+      if (rowwin === 1 || colwin === 1) {
         isWin = true;
       }
     }
-    if((x1 === 1) || (x2 === 1)){
+    if (x1 === 1 || x2 === 1) {
       isWin = true;
     }
     return isWin;
+  }
+
+  async function checkdraw() {
+    let isDraw = false;
+    let temp = true;
+    for (let i = 0; i < Dim; i++) {
+      for (let j = 0; j < Dim; j++) {
+        temp &= Board[i * Dim + j] != 0;
+      }
+    }
+    if (temp === 1) {
+      isDraw = true;
+    }
+    return isDraw;
+  }
+
+  function saveScore() {
+    historyCollection
+      .add({
+        dim: Dim,
+        board: Board,
+        time: Date().toLocaleString(),
+        win: winner,
+      })
+      .then((docRef) => {
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+      });
   }
 
   async function changeTurn() {
     await renderBoard();
     // check winner
     console.log(Board);
-    if(await checkWinner(1)){
+    if (await checkWinner(1)) {
       SetMessage(`Player X is win`);
       gameEnd = true;
       winner = 1;
       endRender();
-    }
-    else if(await checkWinner(2)){
+      saveScore();
+    } else if (await checkWinner(2)) {
       SetMessage(`Player O is win`);
       gameEnd = true;
       winner = 2;
       endRender();
+      saveScore();
+    } else if (
+      (await checkdraw()) &&
+      !((await checkWinner(1)) || (await checkWinner(1)))
+    ) {
+      SetMessage(`Draw`);
+      gameEnd = true;
+      winner = 0;
+      saveScore();
     }
     // End check winner
 
     // change turn
-    if ((Turn === 1) && !gameEnd) {
+    if (Turn === 1 && !gameEnd) {
       // await SetTurn(2);
       Turn = 2;
       SetMessage(`Player O turn.`);
@@ -253,7 +305,7 @@ const Play = () => {
       <br />
       <div className="message">{Message}</div>
       {Boardrender}
-      <br/>
+      <br />
       <div className="btns" onClick={(e) => reset()}>
         Reset
       </div>
