@@ -58,68 +58,149 @@ const Detail = () => {
               }.`
             );
           }
-        })
+        });
     }
     getHistory();
   }, []);
 
-  
-
   return (
-    <div className="Center">
-      <br />
-      <div className="message">{Message}</div>
-      {/* {Boardrender} */}
-      {Board ? Board.map((tempBoard) => {
-          // reder button to board
-          if (tempBoard === 0) {
-            return(
-              <button
-                
-                style={{ width: 330 / Dim, height: 330 / Dim }}
-                className="Board"
-              >
-                <div style={{}} className="Text-Board">
-                  &nbsp;
-                </div>
-              </button>
-            );
-          }
-          // render card X to board
-          else if (tempBoard === 1) {
-            return(
-              <button
-                
-                style={{ width: 330 / Dim, height: 330 / Dim }}
-                className="Board-notclick"
-              >
-                <div className="Text-Board" style={{ fontSize: 240 / Dim }}>
-                  X
-                </div>
-              </button>
-            );
-          }
-          // render card X to board
-          else if (tempBoard === 2) {
-            return(
-              <button
-                
-                style={{ width: 330 / Dim, height: 330 / Dim }}
-                className="Board-notclick"
-              >
-                <div className="Text-Board" style={{ fontSize: 240 / Dim }}>
-                  O
-                </div>
-              </button>
-            );
-          }
-
-          
-      }):(<a></a>)}
-      <br />
-      <Button variant="dark" href="history">
-        Back
-      </Button>
+    <div>
+      {isDesktopOrLaptop && (
+        <>
+          <div className="Center">
+            <br />
+            <div className="message">{Message}</div>
+            {/* {Boardrender} */}
+            <Container>
+              <Row>
+                <Col></Col>
+                <Col xs={5}>
+                  {Board ? (
+                    Board.map((tempBoard, index) => {
+                      // reder button to board
+                      if (tempBoard === 0) {
+                        return (
+                          <button
+                            style={{ width: 330 / Dim, height: 330 / Dim }}
+                            className="Board"
+                          >
+                            <div style={{}} className="Text-Board">
+                              &nbsp;
+                            </div>
+                          </button>
+                        );
+                      }
+                      // render card X to board
+                      else if (tempBoard === 1) {
+                        return (
+                          <button
+                            style={{ width: 330 / Dim, height: 330 / Dim }}
+                            className="Board-notclick"
+                          >
+                            <div
+                              className="Text-Board"
+                              style={{ fontSize: 240 / Dim }}
+                            >
+                              X
+                            </div>
+                          </button>
+                        );
+                      }
+                      // render card X to board
+                      else if (tempBoard === 2) {
+                        return (
+                          <button
+                            style={{ width: 330 / Dim, height: 330 / Dim }}
+                            className="Board-notclick"
+                          >
+                            <div
+                              className="Text-Board"
+                              style={{ fontSize: 240 / Dim }}
+                            >
+                              O
+                            </div>
+                          </button>
+                        );
+                      }
+                    })
+                  ) : (
+                    <a></a>
+                  )}
+                </Col>
+                <Col></Col>
+              </Row>
+            </Container>
+            <br />
+            <Button variant="dark" href="history">
+              Back
+            </Button>
+          </div>
+        </>
+      )}
+      {isTabletOrMobileDevice && (
+        <>
+          <div className="Center">
+            <br />
+            <div className="message">{Message}</div>
+            {/* {Boardrender} */}
+            {Board ? (
+              Board.map((tempBoard, index) => {
+                // reder button to board
+                if (tempBoard === 0) {
+                  return (
+                    <button
+                      style={{ width: 330 / Dim, height: 330 / Dim }}
+                      className="Board"
+                    >
+                      <div style={{}} className="Text-Board">
+                        &nbsp;
+                      </div>
+                    </button>
+                  );
+                }
+                // render card X to board
+                else if (tempBoard === 1) {
+                  return (
+                    <button
+                      style={{ width: 330 / Dim, height: 330 / Dim }}
+                      className="Board-notclick"
+                    >
+                      <div
+                        className="Text-Board"
+                        style={{ fontSize: 240 / Dim }}
+                      >
+                        X
+                      </div>
+                    </button>
+                  );
+                }
+                // render card X to board
+                else if (tempBoard === 2) {
+                  return (
+                    <button
+                      style={{ width: 330 / Dim, height: 330 / Dim }}
+                      className="Board-notclick"
+                    >
+                      <div
+                        className="Text-Board"
+                        style={{ fontSize: 240 / Dim }}
+                      >
+                        O
+                      </div>
+                    </button>
+                  );
+                }
+              })
+            ) : (
+              <a></a>
+            )}
+            <br />
+            <Button variant="dark" href="history">
+              Back
+            </Button>
+          </div>
+        </>
+      )}
     </div>
   );
 };
