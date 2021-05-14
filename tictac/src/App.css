@@ -122,7 +122,6 @@
   cursor: default;
   height: 6rem;
   width: 6rem;
-  /* margin: 0 0.5em 0.5em 0; */
   margin: 0 0.5em 0.5em 0;
   pointer-events: none;
 }
