@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // import page
-import Play from './components/play';
-import History from './components/history';
-import Detail from './components/detail';
+import Play from './pages/play';
+import History from './pages/history';
+import Detail from './pages/detail';
 // End import page
 
 // import component

@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Row, Col, Container } from "react-bootstrap";
 
 // import firebase
-import firebaseApp from "./firebase";
+import firebaseApp from "../components/firebase";
 const db = firebaseApp.firestore();
 const historyCollection = db.collection("History");
 // End import firebase
@@ -48,7 +48,7 @@ const Play = () => {
           temp.push(
             <button
               id={i * Dim + j}
-              style={{ width: 330 / Dim, height: 330 / Dim }}
+              style={{ width: 320 / Dim, height: 320 / Dim }}
               className="Board"
               onClick={(e) => {
                 clickButton(e);
@@ -65,7 +65,7 @@ const Play = () => {
           temp.push(
             <button
               id={i * Dim + j}
-              style={{ width: 330 / Dim, height: 330 / Dim }}
+              style={{ width: 320 / Dim, height: 320 / Dim }}
               className="Board-notclick"
             >
               <div className="Text-Board" style={{ fontSize: 240 / Dim }}>
@@ -79,7 +79,7 @@ const Play = () => {
           temp.push(
             <button
               id={i * Dim + j}
-              style={{ width: 330 / Dim, height: 330 / Dim }}
+              style={{ width: 320 / Dim, height: 320 / Dim }}
               className="Board-notclick"
             >
               <div className="Text-Board" style={{ fontSize: 240 / Dim }}>
@@ -104,7 +104,7 @@ const Play = () => {
           temp.push(
             <button
               id={i * Dim + j}
-              style={{ width: 330 / Dim, height: 330 / Dim }}
+              style={{ width: 320 / Dim, height: 320 / Dim }}
               className="Board"
             >
               <div style={{}} className="Text-Board">
@@ -118,7 +118,7 @@ const Play = () => {
           temp.push(
             <button
               id={i * Dim + j}
-              style={{ width: 330 / Dim, height: 330 / Dim }}
+              style={{ width: 320 / Dim, height: 320 / Dim }}
               className="Board-notclick"
             >
               <div className="Text-Board" style={{ fontSize: 240 / Dim }}>
@@ -132,7 +132,7 @@ const Play = () => {
           temp.push(
             <button
               id={i * Dim + j}
-              style={{ width: 330 / Dim, height: 330 / Dim }}
+              style={{ width: 320 / Dim, height: 320 / Dim }}
               className="Board-notclick"
             >
               <div className="Text-Board" style={{ fontSize: 240 / Dim }}>

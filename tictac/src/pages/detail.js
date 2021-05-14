@@ -5,7 +5,7 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import AppCSS from "../App.css";
 
 // import firebase
-import firebaseApp from "./firebase";
+import firebaseApp from "../components/firebase";
 const db = firebaseApp.firestore();
 const historyCollection = db.collection("History");
 // End import firebase
@@ -74,7 +74,7 @@ const Detail = () => {
             <Container>
               <Row>
                 <Col></Col>
-                <Col xs={5}>
+                <Col xs={4}>
                   {Board ? (
                     Board.map((tempBoard, index) => {
                       // reder button to board
@@ -84,7 +84,7 @@ const Detail = () => {
                             style={{ width: 330 / Dim, height: 330 / Dim }}
                             className="Board"
                           >
-                            <div style={{}} className="Text-Board">
+                            <div style={{ fontSize: 240 / Dim }} className="Text-Board">
                               &nbsp;
                             </div>
                           </button>
@@ -149,7 +149,7 @@ const Detail = () => {
                 if (tempBoard === 0) {
                   return (
                     <button
-                      style={{ width: 330 / Dim, height: 330 / Dim }}
+                      style={{ width: 320 / Dim, height: 320 / Dim }}
                       className="Board"
                     >
                       <div style={{}} className="Text-Board">
@@ -162,7 +162,7 @@ const Detail = () => {
                 else if (tempBoard === 1) {
                   return (
                     <button
-                      style={{ width: 330 / Dim, height: 330 / Dim }}
+                      style={{ width: 320 / Dim, height: 320 / Dim }}
                       className="Board-notclick"
                     >
                       <div
@@ -178,7 +178,7 @@ const Detail = () => {
                 else if (tempBoard === 2) {
                   return (
                     <button
-                      style={{ width: 330 / Dim, height: 330 / Dim }}
+                      style={{ width: 320 / Dim, height: 320 / Dim }}
                       className="Board-notclick"
                     >
                       <div

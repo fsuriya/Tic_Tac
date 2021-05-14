@@ -3,11 +3,11 @@ import { useMediaQuery } from "react-responsive";
 import { Container, Row, Col, Card } from "react-bootstrap";
 
 // import component
-import CardHistory from './cardHistory';
+import CardHistory from '../components/cardHistory';
 // End import component
 
 // import firebase
-import firebaseApp from "./firebase";
+import firebaseApp from "../components/firebase";
 const db = firebaseApp.firestore();
 const historyCollection = db.collection("History");
 // End import firebase
