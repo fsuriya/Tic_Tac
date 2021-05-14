@@ -54,7 +54,7 @@ const Play = () => {
                 clickButton(e);
               }}
             >
-              <div style={{}} className="Text-Board">
+              <div className="Text-Board" style={{ fontSize: 240 / Dim }}>
                 &nbsp;
               </div>
             </button>
@@ -107,7 +107,7 @@ const Play = () => {
               style={{ width: 330 / Dim, height: 330 / Dim }}
               className="Board"
             >
-              <div style={{}} className="Text-Board">
+              <div className="Text-Board" style={{ fontSize: 240 / Dim }}>
                 &nbsp;
               </div>
             </button>
