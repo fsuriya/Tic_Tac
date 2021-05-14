@@ -25,6 +25,7 @@ const Detail = () => {
   const [Dim, SetDim] = useState();
   const [Message, SetMessage] = useState();
   const [Boardrender, SetBoardrender] = useState();
+  var sizeBoard = 280;
 
   useEffect(() => {
     function getHistory() {
@@ -81,7 +82,7 @@ const Detail = () => {
                       if (tempBoard === 0) {
                         return (
                           <button
-                            style={{ width: 330 / Dim, height: 330 / Dim }}
+                            style={{ width: sizeBoard / Dim, height: sizeBoard / Dim }}
                             className="Board"
                           >
                             <div style={{ fontSize: 240 / Dim }} className="Text-Board">
@@ -94,7 +95,7 @@ const Detail = () => {
                       else if (tempBoard === 1) {
                         return (
                           <button
-                            style={{ width: 330 / Dim, height: 330 / Dim }}
+                            style={{ width: sizeBoard / Dim, height: sizeBoard / Dim }}
                             className="Board-notclick"
                           >
                             <div
@@ -110,7 +111,7 @@ const Detail = () => {
                       else if (tempBoard === 2) {
                         return (
                           <button
-                            style={{ width: 330 / Dim, height: 330 / Dim }}
+                            style={{ width: sizeBoard / Dim, height: sizeBoard / Dim }}
                             className="Board-notclick"
                           >
                             <div
@@ -149,10 +150,10 @@ const Detail = () => {
                 if (tempBoard === 0) {
                   return (
                     <button
-                      style={{ width: 320 / Dim, height: 320 / Dim }}
+                      style={{ width: sizeBoard / Dim, height: sizeBoard / Dim }}
                       className="Board"
                     >
-                      <div style={{}} className="Text-Board">
+                      <div style={{fontSize: 240 / Dim}} className="Text-Board">
                         &nbsp;
                       </div>
                     </button>
@@ -162,7 +163,7 @@ const Detail = () => {
                 else if (tempBoard === 1) {
                   return (
                     <button
-                      style={{ width: 320 / Dim, height: 320 / Dim }}
+                      style={{ width: sizeBoard / Dim, height: sizeBoard / Dim }}
                       className="Board-notclick"
                     >
                       <div
@@ -178,7 +179,7 @@ const Detail = () => {
                 else if (tempBoard === 2) {
                   return (
                     <button
-                      style={{ width: 320 / Dim, height: 320 / Dim }}
+                      style={{ width: sizeBoard / Dim, height: sizeBoard / Dim }}
                       className="Board-notclick"
                     >
                       <div

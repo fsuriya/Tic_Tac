@@ -18,6 +18,7 @@ const Play = () => {
   var winner;
   const [Board, SetBoard] = useState();
   const [Boardrender, SetBoardrender] = useState();
+  var sizeBoard = 280;
 
   function setDimension(value) {
     console.log(value);
@@ -48,13 +49,13 @@ const Play = () => {
           temp.push(
             <button
               id={i * Dim + j}
-              style={{ width: 320 / Dim, height: 320 / Dim }}
+              style={{ width: sizeBoard / Dim, height: sizeBoard / Dim }}
               className="Board"
               onClick={(e) => {
                 clickButton(e);
               }}
             >
-              <div style={{}} className="Text-Board">
+              <div style={{ fontSize: 240 / Dim }} className="Text-Board">
                 &nbsp;
               </div>
             </button>
@@ -65,7 +66,7 @@ const Play = () => {
           temp.push(
             <button
               id={i * Dim + j}
-              style={{ width: 320 / Dim, height: 320 / Dim }}
+              style={{ width: sizeBoard / Dim, height: sizeBoard / Dim }}
               className="Board-notclick"
             >
               <div className="Text-Board" style={{ fontSize: 240 / Dim }}>
@@ -79,7 +80,7 @@ const Play = () => {
           temp.push(
             <button
               id={i * Dim + j}
-              style={{ width: 320 / Dim, height: 320 / Dim }}
+              style={{ width: sizeBoard / Dim, height: sizeBoard / Dim }}
               className="Board-notclick"
             >
               <div className="Text-Board" style={{ fontSize: 240 / Dim }}>
@@ -104,10 +105,10 @@ const Play = () => {
           temp.push(
             <button
               id={i * Dim + j}
-              style={{ width: 320 / Dim, height: 320 / Dim }}
+              style={{ width: sizeBoard / Dim, height: sizeBoard / Dim }}
               className="Board"
             >
-              <div style={{}} className="Text-Board">
+              <div style={{fontSize: 240 / Dim}} className="Text-Board">
                 &nbsp;
               </div>
             </button>
@@ -118,7 +119,7 @@ const Play = () => {
           temp.push(
             <button
               id={i * Dim + j}
-              style={{ width: 320 / Dim, height: 320 / Dim }}
+              style={{ width: sizeBoard / Dim, height: sizeBoard / Dim }}
               className="Board-notclick"
             >
               <div className="Text-Board" style={{ fontSize: 240 / Dim }}>
@@ -132,7 +133,7 @@ const Play = () => {
           temp.push(
             <button
               id={i * Dim + j}
-              style={{ width: 320 / Dim, height: 320 / Dim }}
+              style={{ width: sizeBoard / Dim, height: sizeBoard / Dim }}
               className="Board-notclick"
             >
               <div className="Text-Board" style={{ fontSize: 240 / Dim }}>
